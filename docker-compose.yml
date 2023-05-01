@@ -5,11 +5,9 @@ services:
     image: mysql:latest
     container_name: db
     environment:
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Ronaldo@23
-      MYSQL_DATABASE: wissdb
+      MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ../db:/var/lib/mysql
+      - ../data:/var/lib/mysql
     ports:
         - "3306:3306"
 
@@ -18,41 +16,30 @@ services:
     container_name: config-server
     ports:
       - "8888:8888"
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://config-server:8888/actuator/health" ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
   eureka-server:
     image: eureka-server:latest
     container_name: eureka-server
     ports:
       - "8761:8761"
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://eureka-server:8761/actuator/health" ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
   notification-service:
     image: notification-service:prod
     container_name: notification-service
     depends_on:
-      config-server:
-        condition: service_healthy
-      eureka-server:
-        condition: service_healthy
+      - config-server
+      - eureka-server
     ports:
       - "8081:8081"
+    restart: on-failure
   auth-service:
     image: auth-service:latest
     container_name: auth-service
+    ports:
+      - "9898:9898"
     depends_on:
       - db
       - eureka-server
-    ports:
-      - "9898:9898"
     restart: on-failure
 
 
@@ -61,5 +48,7 @@ services:
     container_name: gateway
     depends_on:
       - notification-service
+      - auth-service
     ports:
       - "8080:8080"
+    restart: on-failure
