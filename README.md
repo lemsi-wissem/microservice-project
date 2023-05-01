@@ -12,6 +12,7 @@
 	<li><strong>config-server:</strong> Spring Cloud Config server used to externalize the configuration for the services.</li>
 	<li><strong>eureka-server:</strong> Service discovery server used by the services to register and discover each other.</li>
 	<li><strong>notification-service:</strong> Service that sends notifications to users via email or SMS.</li>
+    <li><strong>produit-service:</strong> Service that handles products</li>
 	<li><strong>auth-service:</strong> Service that handles user authentication and authorization.</li>
 	<li><strong>gateway:</strong> API gateway that provides a single entry point to the microservices.</li>
 </ul>

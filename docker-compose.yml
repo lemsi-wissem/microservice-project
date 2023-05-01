@@ -9,7 +9,7 @@ services:
     volumes:
       - ../data:/var/lib/mysql
     ports:
-        - "3306:3306"
+      - "3306:3306"
 
   config-server:
     image: config-server:latest
@@ -32,6 +32,15 @@ services:
     ports:
       - "8081:8081"
     restart: on-failure
+  produit-service:
+    image: produit-service:latest
+    container_name: produit-service
+    depends_on:
+      - db
+      - eureka-server
+    ports:
+      - "8082:8082"
+    restart: on-failure
   auth-service:
     image: auth-service:latest
     container_name: auth-service
@@ -49,6 +58,7 @@ services:
     depends_on:
       - notification-service
       - auth-service
+      - produit-service
     ports:
       - "8080:8080"
     restart: on-failure
