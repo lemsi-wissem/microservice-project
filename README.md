@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Microservices Project Readme</title>
 </head>
 <body>
 	<h1>Microservices Project Readme</h1>
