@@ -13,6 +13,7 @@ import com.twilio.type.PhoneNumber;
 import com.twilio.Twilio;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/notification")
 public class NotificationController {
 
