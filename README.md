@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,16 +47,6 @@
 
 <p>You can also access the Eureka server console at <a href="http://localhost:8761">http://localhost:8761</a> to see the registered services.</p>
 
-<h2>Dependencies</h2>
+<h2>Front-end application</h2>
 
-<ul>
-	<li>Docker version 20.10 or higher</li>
-	<li>Docker Compose version 1.29 or higher</li>
-</ul>
-
-<h2>Contributing</h2>
-
-<p>If you want to contribute to this project, please fork the repository and create a pull request with your changes. We welcome all contributions!</p>
-
-</body>
-</html>
+<p>The front-end of this project can be found in the "front-microservices" folder. It is built using V
