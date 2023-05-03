@@ -24,7 +24,7 @@
       <module name="Configuration-server" options="-parameters" />
       <module name="demo" options="-parameters" />
       <module name="gateway" options="-parameters" />
-      <module name="gestionStock" options="-parameters" />
+      <module name="gestionStock" options="" />
       <module name="notification-service" options="-parameters" />
       <module name="produit" options="-parameters" />
       <module name="security" options="-parameters" />

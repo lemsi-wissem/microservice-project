@@ -1,0 +1,14 @@
+{
+    "name": "payment-module",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "mongoose": "^6.2.2",
+      "eureka-js-client": "^4.0.2"
+    }
+  }
