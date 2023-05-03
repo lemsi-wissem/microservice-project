@@ -1,15 +1,6 @@
 version: "3.9"
 
 services:
-  mongodb:
-    image: mongodb/mongodb-community-server
-    container_name: mongodb
-    restart: on-failure
-    volumes:
-      - ../data:/var/lib/mongodb
-    ports:
-      - "27017:27017"
-
   db:
     image: mysql:latest
     container_name: db
@@ -25,58 +16,72 @@ services:
     container_name: config-server
     ports:
       - "8888:8888"
-      
-  
+
   eureka-server:
     image: eureka-server:latest
     container_name: eureka-server
     ports:
       - "8761:8761"
-    
 
-  payment:
-    image: payment
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: payment
-    restart: on-failure
-    ports:
-      - 3000:3000
+  notification-service:
+    image: notification-service:prod
+    container_name: notification-service
     depends_on:
-      - mongodb
+      - config-server
       - eureka-server
+    ports:
+      - "8081:8081"
+    restart: on-failure
+  produit-service:
+    image: produit-service:latest
+    container_name: produit-service
+    depends_on:
+      - db
+      - eureka-server
+    environment:
+      - "eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/"
+    ports:
+      - "8082:8082"
+    restart: on-failure
+  stock-service:
+    image: stock-service:latest
+    container_name: stock-service
+    depends_on:
+      - db
+      - eureka-server
+    ports:
+      - "8085:8085"
+    restart: on-failure
+  auth-service:
+    image: auth-service:latest
+    container_name: auth-service
+    ports:
+      - "9898:9898"
+    depends_on:
+      - db
+      - eureka-server
+    restart: on-failure
 
+  fournisseur-service:
+    image: fournisseur-service:latest
+    container_name: fournisseur-service
+    depends_on:
+      - db
+      - eureka-server
+    environment:
+      - "eureka.client.serviceUrl.defaultZone=http://eureka-server:8761/eureka/"
+    ports:
+      - "8084:8084"
+    restart: on-failure
 
-
-  # notification-service:
-  #   image: notification-service:prod
-  #   container_name: notification-service
-  #   depends_on:
-  #     - config-server
-  #     - eureka-server
-  #   ports:
-  #     - "8081:8081"
-  #   restart: on-failure
-
-  # auth-service:
-  #   image: auth-service:latest
-  #   container_name: auth-service
-  #   ports:
-  #     - "9898:9898"
-  #   depends_on:
-  #     - db
-  #     - eureka-server
-  #   restart: on-failure
-
-
-
-  # gateway:
-  #   image: gateway:latest
-  #   container_name: gateway
-  #   depends_on:
-  #     - notification-service
-  #     - auth-service
-  #   ports:
-  #     - "8080:8080"
-  #   restart: on-failure
+  gateway:
+    image: gateway:latest
+    container_name: gateway
+    depends_on:
+      - notification-service
+      - auth-service
+      - produit-service
+      - stock-service
+    ports:
+      - "8080:8080"
+    restart: on-failure
