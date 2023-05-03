@@ -49,4 +49,24 @@
 
 <h2>Front-end application</h2>
 
-<p>The front-end of this project can be found in the "front-microservices" folder. It is built using V
+<p>This project contains a front-end application built with Vite and React.js that interacts with the microservices in the backend. The front-end application can be found in the "front-microservices" folder. </p>
+	<p>Vite is a build tool that offers fast build times and live reloads for modern web development. It is used in this project to build and serve the front-end application.</p>
+	<h2>Running the Front-End Application</h2>
+	<p>To run the front-end application, follow these steps:</p>
+	<ol>
+		<li>Navigate to the "front-microservices" folder in your terminal.</li>
+		<li>Install the dependencies by running the command <code>npm install</code>.</li>
+		<li>Start the development server by running the command <code>npm run dev</code>. This will start the application on port 5173.</li>
+		<li>Open your web browser and go to <a href="http://localhost:5173">http://localhost:5173</a> to view the application.</li>
+	</ol>
+	<h2>Dependencies</h2>
+	<ul>
+		<li>Node.js version 12 or higher</li>
+		<li>NPM package manager</li>
+		<li>Vite build tool</li>
+		<li>React.js library</li>
+	</ul>
+	<h2>Contributing</h2>
+	<p>If you want to contribute to this project, please fork the repository and create a pull request with your changes. We welcome all contributions!</p>
+</body>
+</html>
