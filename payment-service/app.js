@@ -38,7 +38,7 @@ const eureka = new Eureka({
   instance: {
     app: 'payment',
     instanceId: 'payment-1',
-    hostName: 'localhost',
+    hostName: 'payment',
     ipAddr:'127.0.0.1',
     port: {
       '$': 3000,
@@ -51,7 +51,7 @@ const eureka = new Eureka({
     },
   },
   eureka: {
-    host: 'localhost',
+    host: 'eureka-server',
     port: 8761,
     servicePath: '/eureka/apps/',
   },
