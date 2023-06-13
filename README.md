@@ -3,7 +3,7 @@
 <head>
 </head>
 <body>
-	<h1>Microservices Project Readme</h1>
+	<h1>Microservices Project</h1>
 <p>This project contains a set of microservices that work together to provide a notification and authentication system. The architecture of the project is based on a Docker Compose file that contains the following services:</p>
 
 <ul>
